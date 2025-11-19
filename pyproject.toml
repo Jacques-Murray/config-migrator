@@ -1,14 +1,12 @@
+# Author: Jacques Murray
 [project]
 name = "config-migrator"
-version = "0.1.0"
-description = "Add your description here"
-readme = "README.md"
+version = "1.0.0"
+description = "CLI tool to migrate legacy config files (ESLint, Babel) to modern formats."
 requires-python = ">=3.13"
-dependencies = ["pydantic>=2.12.4", "rich>=14.2.0", "typer>=0.20.0"]
-
-[project.scripts]
-migrator = "src.main:app"
-
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+dependencies = [
+    "pydantic>=2.12.4",
+    "pydantic-settings>=2.12.0",
+    "rich>=14.2.0",
+    "typer>=0.20.0",
+]
