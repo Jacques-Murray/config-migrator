@@ -1,5 +1,4 @@
 # Author: Jacques Murray
-import pytest
 from pathlib import Path
 from src.utils.fs_handler import FileSystemHandler
 from src.config import settings

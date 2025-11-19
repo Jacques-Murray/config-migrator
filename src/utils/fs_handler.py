@@ -2,7 +2,6 @@
 import shutil
 import os
 from pathlib import Path
-from typing import Optional
 from src.utils.logger import setup_logger
 from src.config import settings
 

@@ -1,5 +1,4 @@
 # Author: Jacques Murray
-import os
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 

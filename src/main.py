@@ -1,7 +1,6 @@
 # Author: Jacques Murray
 import typer
 from pathlib import Path
-from typing import Optional
 from src.core.manager import MigrationManager
 from src.utils.logger import setup_logger
 from src.config import settings
