@@ -11,7 +11,8 @@ logger = setup_logger(__name__)
 
 class FileSystemHandler:
     """
-    Handles file system operations with built-in safety mechanisms (backups).
+    Handles file system operations with built-in safety mechanisms (backups)
+    and respects the global DRY_RUN configuration.
     """
 
     @staticmethod
@@ -28,6 +29,11 @@ class FileSystemHandler:
         backup_path = file_path.with_suffix(
             file_path.suffix + settings.BACKUP_EXTENSION
         )
+
+        if settings.DRY_RUN:
+            logger.info(f"[DRY RUN] Would create backup: {backup_path}")
+            return backup_path
+
         try:
             shutil.copy2(file_path, backup_path)
             logger.debug(f"Backup created: {backup_path}")
@@ -54,6 +60,10 @@ class FileSystemHandler:
           file_path (Path): Target path.
           content (str): Content to write.
         """
+        if settings.DRY_RUN:
+            logger.info(f"[DRY RUN] Would write to {file_path}")
+            return
+
         if file_path.exists():
             FileSystemHandler.create_backup(file_path)
 
@@ -69,6 +79,10 @@ class FileSystemHandler:
         """Deletes a file safely, ensuring a backup exists if needed."""
         # In the migration utility, we usually keep the old file as backup
         # but specifically rename it.
+        if settings.DRY_RUN:
+            logger.info(f"[DRY RUN] Would delete {file_path}")
+            return
+
         try:
             if file_path.exists():
                 backup = FileSystemHandler.create_backup(file_path)
