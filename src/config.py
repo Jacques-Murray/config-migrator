@@ -1,6 +1,6 @@
 # Author: Jacques Murray
 import os
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
@@ -12,9 +12,8 @@ class Settings(BaseSettings):
     DRY_RUN: bool = False
     BACKUP_EXTENSION: str = ".bak"
 
-    class Config:
-        env_prefix = "MIGRATOR_"
-        case_sensitive = True
+    # Pydantic V2 Configuration
+    model_config = SettingsConfigDict(env_prefix="MIGRATOR_", case_sensitive=True)
 
 
 settings = Settings()
